@@ -163,7 +163,14 @@ a {
   };
 
   var params = new URLSearchParams(window.location.search);
-  var envoye = params.get('envoye');
+var envoye = params.get('envoye');
+
+// 🔥 sauvegarde pour éviter perte si URL disparaît
+if (envoye) {
+  sessionStorage.setItem('envoye', envoye);
+} else {
+  envoye = sessionStorage.getItem('envoye');
+}
 
   if (envoye && nomsFormulaires[envoye]) {
 
