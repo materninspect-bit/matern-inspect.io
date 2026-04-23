@@ -3,23 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matern'inspect</title>
-<link rel="icon" type="image/png" href="logo-materne.png">
-<style>
 
-* { box-sizing: border-box; }
+<title>Matern'inspect</title>
+  <link rel="icon" type"image/png" href=logo-materne.png>
+
+<style>
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   text-align: center;
+
   background:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
     url('Pommes.jpg') no-repeat center center fixed;
+
   background-size: cover;
-  min-height: 100vh;
 }
 
+/* Logo */
 .logo {
   width: 150px;
   max-width: 40%;
@@ -29,189 +31,71 @@ body {
   top: 10px;
 }
 
-h1 { color: red; font-size: 30px; }
-p  { color: green; font-size: 26px; }
+/* Texte */
+h1 {
+  color: red;
+  font-size: 30px;
+}
 
+p {
+  color: green; 
+  font-size: 26px;
+}
+
+/* Lien */
 a {
   display: inline-block;
   margin-top: 20px;
   font-size: 18px;
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
+  color : blue ; 
 }
 
-#vue-principale  { display: block; }
-#vue-attente     { display: none; padding-top: 80px; }
-#vue-confirmation{ display: none; padding-top: 80px; }
-
-/* ── Bulle d'attente ── */
-.bulle-attente {
-  display: inline-block;
-  background: #fff;
-  border: 3px solid #1565c0;
-  border-radius: 20px;
-  padding: 28px 36px;
-  margin-top: 40px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.30);
-  animation: apparition 0.4s ease;
-}
-
-.bulle-attente .icone { font-size: 48px; display: block; margin-bottom: 10px; }
-
-.bulle-attente p {
-  color: #1565c0;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0 0 6px 0;
-}
-
-.bulle-attente small {
-  color: #555;
-  font-size: 15px;
-}
-
-/* ── Bulle confirmation ── */
-.bulle {
-  display: inline-block;
-  background: #fff;
-  border: 3px solid #4caf50;
-  border-radius: 20px;
-  padding: 24px 36px;
-  margin-top: 40px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.30);
-  animation: apparition 0.4s ease;
-}
-
-.bulle .icone { font-size: 48px; display: block; margin-bottom: 10px; }
-
-.bulle p {
-  color: #2e7d32;
-  font-size: 22px;
-  font-weight: bold;
-  margin: 0;
-}
-
-/* ── Bouton retour ── */
-.btn-retour {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 40px;
-  background: #d32f2f;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 14px 30px;
-  border-radius: 50px;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.30);
-  transition: background 0.2s, transform 0.15s;
-}
-.btn-retour:hover { background: #b71c1c; transform: translateY(-2px); }
-.btn-retour .fleche { font-size: 22px; }
-
-@keyframes apparition {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
+/* 📱 Mobile */
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  p  { font-size: 22px; }
-  .logo { width: 100px; }
-  .bulle p, .bulle-attente p { font-size: 18px; }
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 22px;
+  }
+
+  .logo {
+    width: 100px;
+  }
 }
 
 </style>
 </head>
+
 <body>
 
-<img src="logo-materne.png" class="logo" alt="Logo Materne">
+<img src="logo-materne.png" class="logo">
 
-<!-- VUE PRINCIPALE -->
-<div id="vue-principale">
-  <h1><br><br>Bonjour !</h1>
-  <p><strong>Prêt pour votre session d'inspection ?</strong></p>
+<h1> <br> <br> Bonjour !</h1>
+<p> <strong> Prêt pour votre session d'inspection ?</strong></p>
 
-  <a onclick="ouvrirFormulaire('https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13')">
-    Formulaire ligne de conditionnement
-  </a><br><br>
-
-  <a onclick="ouvrirFormulaire('https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13')">
-    Formulaire zone de pasteurisation
-  </a><br><br>
-
-  <a onclick="ouvrirFormulaire('https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13')">
-    Formulaire entrepôt logistique B
-  </a><br><br>
-
-  <a onclick="ouvrirFormulaire('https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13')">
-    Formulaire zone préparation
-  </a>
-</div>
-
-<!-- VUE ATTENTE -->
-<div id="vue-attente">
-  <div class="bulle-attente">
-    <span class="icone">📋</span>
-    <p>Formulaire ouvert dans un autre onglet</p>
-    <small>Revenez ici une fois le formulaire envoyé</small>
-  </div>
-</div>
-
-<!-- VUE CONFIRMATION -->
-<div id="vue-confirmation">
-  <div class="bulle">
-    <span class="icone">✅</span>
-    <p>Votre questionnaire a bien été envoyé&nbsp;!</p>
-  </div>
+<a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13" target="_blank">
+  Formulaire ligne de conditionnement
+</a>
   <br>
-  <button class="btn-retour" onclick="revenirAccueil()">
-    <span class="fleche">←</span> Retour à l'accueil
-  </button>
-</div>
+  <br>
 
-<script>
-  var formulaireOuvert = false;
-  var tempsOuverture = 0;
-  var DELAI_MIN_MS = 10000; // 10 secondes minimum avant de considérer le retour comme une soumission
+  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13" target="_blank">
+  Formulaire zone de pasteurisation
+</a>
+  <br>
+  <br>
 
-  function ouvrirFormulaire(url) {
-    formulaireOuvert = true;
-    tempsOuverture = Date.now();
+  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13" target="_blank">
+  Formulaire entrepôt logistique B
+</a>
+  <br>
+  <br>
 
-    window.open(url, '_blank');
-
-    document.getElementById('vue-principale').style.display = 'none';
-    document.getElementById('vue-attente').style.display = 'block';
-  }
-
-  document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible' && formulaireOuvert) {
-      var duree = Date.now() - tempsOuverture;
-      if (duree >= DELAI_MIN_MS) {
-        // L'utilisateur a passé assez de temps sur le formulaire → soumission probable
-        formulaireOuvert = false;
-        afficherConfirmation();
-      }
-      // Sinon on ignore (retour trop rapide = pas encore soumis)
-    }
-  });
-
-  function afficherConfirmation() {
-    document.getElementById('vue-attente').style.display = 'none';
-    document.getElementById('vue-confirmation').style.display = 'block';
-  }
-
-  function revenirAccueil() {
-    formulaireOuvert = false;
-    document.getElementById('vue-confirmation').style.display = 'none';
-    document.getElementById('vue-attente').style.display = 'none';
-    document.getElementById('vue-principale').style.display = 'block';
-  }
-</script>
+  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13" target="_blank">
+  Formulaire zone préparation
+</a>
 
 </body>
 </html>
