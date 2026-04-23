@@ -257,30 +257,24 @@ a {
     document.getElementById('vue-iframe').classList.add('actif');
   }
 
-  function iframeChargee() {
-    chargements++;
-    document.getElementById('spinner').style.display = 'none';
+function iframeChargee() {
+  // juste cacher le spinner, plus de compteur
+  document.getElementById('spinner').style.display = 'none';
+}
 
-    // Le 1er chargement = affichage du formulaire
-    // Le 2ème chargement = Grist a redirigé après soumission → confirmation !
-    if (chargements >= 2) {
-      afficherConfirmation();
-    }
-  }
+   
 
   function fermerIframe() {
     // Fermeture manuelle (croix) sans avoir soumis
     document.getElementById('vue-iframe').classList.remove('actif');
     document.getElementById('le-iframe').src = '';
     document.getElementById('vue-principale').style.display = 'block';
-    chargements = 0;
-  }
+      }
 
 function afficherConfirmation() {
     document.getElementById('vue-iframe').classList.remove('actif');
     document.getElementById('le-iframe').src = '';
-    chargements = 0;
-
+    
     document.getElementById('vue-confirmation').style.display = 'block';
 }
     
