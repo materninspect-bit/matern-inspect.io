@@ -138,6 +138,10 @@ a {
   <button class="btn-retour" onclick="revenirAccueil()">
     <span class="fleche">←</span> Retour à l'accueil
   </button>
+  <br>
+<a id="lien-indicateur" href="#" class="btn-retour" style="background:#1565c0;">
+  📄 Voir le compte rendu
+</a>
 </div>
 
 <script>
@@ -152,11 +156,24 @@ a {
   var params = new URLSearchParams(window.location.search);
   var envoye = params.get('envoye');
 
-  if (envoye && nomsFormulaires[envoye]) {
-    history.replaceState({}, '', window.location.pathname);
-    document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
-    afficherConfirmation();
+if (envoye && nomsFormulaires[envoye]) {
+  history.replaceState({}, '', window.location.pathname);
+
+  document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
+
+  // 🔗 Ajouter le bon lien de compte rendu
+  var lien = liensComptesRendus[envoye];
+  var boutonCR = document.getElementById('lien-compte-rendu');
+
+  if (lien) {
+    boutonCR.href = lien;
+    boutonCR.style.display = 'inline-flex';
+  } else {
+    boutonCR.style.display = 'none';
   }
+
+  afficherConfirmation();
+}
 
   function afficherConfirmation() {
     document.getElementById('vue-principale').style.display = 'none';
