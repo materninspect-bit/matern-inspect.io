@@ -162,7 +162,7 @@ var liensComptesRendus = {
   var envoye = params.get('envoye');
 
 if (envoye && nomsFormulaires[envoye]) {
-  history.replaceState({}, '', window.location.pathname);
+
 
   document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
 
@@ -186,6 +186,7 @@ if (envoye && nomsFormulaires[envoye]) {
   }
 
   function revenirAccueil() {
+      history.replaceState({}, '', window.location.pathname);
     document.getElementById('vue-confirmation').style.display = 'none';
     document.getElementById('vue-principale').style.display = 'block';
   }
