@@ -146,39 +146,41 @@ a {
 
 <script>
 
+ document.addEventListener("DOMContentLoaded", function() {
+
   var nomsFormulaires = {
-    '1': 'Ligne de conditonnement',
+    '1': 'Ligne de conditionnement',
     '2': 'Zone de pasteurisation',
     '3': 'Entrepôt logistique B',
     '4': 'Zone préparation'
   };
-var liensComptesRendus = {
-  '1': 'https://www.750g.com/pilons-de-poulet-au-air-fryer-r209306.htm',
-  '2': 'indicateurs-pasteurisation.html',
-  '3': 'indicateurs-entrepot.html',
-  '4': 'indicateurs-preparation.html'
-};
+
+  var liensComptesRendus = {
+    '1': 'https://www.750g.com/pilons-de-poulet-au-air-fryer-r209306.htm',
+    '2': 'indicateurs-pasteurisation.html',
+    '3': 'indicateurs-entrepot.html',
+    '4': 'indicateurs-preparation.html'
+  };
+
   var params = new URLSearchParams(window.location.search);
   var envoye = params.get('envoye');
 
-if (envoye && nomsFormulaires[envoye]) {
+  if (envoye && nomsFormulaires[envoye]) {
 
+    document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
 
-  document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
+    var lien = liensComptesRendus[envoye];
+    var boutonCR = document.getElementById('lien-indicateur');
 
-  // 🔗 Ajouter le bon lien de compte rendu
-  var lien = liensComptesRendus[envoye];
-  var boutonCR = document.getElementById('lien-indicateur');
+    if (boutonCR && lien) {
+      boutonCR.href = lien;
+      boutonCR.style.display = 'inline-flex';
+    }
 
-  if (lien) {
-    boutonCR.href = lien;
-    boutonCR.style.display = 'inline-flex';
-  } else {
-    boutonCR.style.display = 'none';
+    afficherConfirmation();
   }
 
-  afficherConfirmation();
-}
+});
 
   function afficherConfirmation() {
     document.getElementById('vue-principale').style.display = 'none';
