@@ -239,12 +239,11 @@ a {
 <!-- ══════════════════════════════════════ -->
 <script>
 
+ <script>
   var urlFormulaire = '';
 
   function ouvrirFormulaire(url, nom) {
     urlFormulaire = url;
-    chargements = 0;
-
     document.getElementById('titre-iframe').textContent = nom;
     document.getElementById('spinner').style.display = 'block';
 
@@ -256,38 +255,47 @@ a {
     document.getElementById('vue-iframe').classList.add('actif');
   }
 
-function iframeChargee() {
-  // juste cacher le spinner, plus de compteur
-  document.getElementById('spinner').style.display = 'none';
-}
-
-   
+  function iframeChargee() {
+    // Cacher le spinner une fois l'iframe chargée
+    document.getElementById('spinner').style.display = 'none';
+  }
 
   function fermerIframe() {
     // Fermeture manuelle (croix) sans avoir soumis
     document.getElementById('vue-iframe').classList.remove('actif');
     document.getElementById('le-iframe').src = '';
     document.getElementById('vue-principale').style.display = 'block';
-      }
+  }
 
-function afficherConfirmation() {
+  function afficherConfirmation() {
     document.getElementById('vue-iframe').classList.remove('actif');
     document.getElementById('le-iframe').src = '';
-    
     document.getElementById('vue-confirmation').style.display = 'block';
-}
-    
-  window.addEventListener("message", function(e) {
-  if (e.data === "grist-form-submitted") {
-    afficherConfirmation();
   }
-});
 
   function revenirAccueil() {
     document.getElementById('vue-confirmation').style.display = 'none';
-    document.getElementById('vue-principale').style.display  = 'block';
+    document.getElementById('vue-principale').style.display = 'block';
   }
 
-</script>
+  // Écouteur d'événement pour le message de soumission
+  window.addEventListener("message", function(e) {
+    if (e.data === "grist-form-submitted") {
+      afficherConfirmation();
+    }
+  });
 
-</body>
+  // Vérification périodique de l'URL de l'iframe (au cas où postMessage ne fonctionne pas)
+  setInterval(function() {
+    try {
+      var iframe = document.getElementById('le-iframe');
+      if (iframe.contentWindow.location.href.includes("submitted") ||
+          iframe.contentWindow.location.href.includes("envoye") ||
+          iframe.contentWindow.location.href.includes("merci")) {
+        afficherConfirmation();
+      }
+    } catch (e) {
+      // L'erreur est normale si l'iframe est sur un domaine différent (CORS)
+    }
+  }, 1000);
+</script>
