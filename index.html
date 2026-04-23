@@ -276,23 +276,22 @@ a {
     chargements = 0;
   }
 
-  function afficherConfirmation() {
+function afficherConfirmation() {
     document.getElementById('vue-iframe').classList.remove('actif');
     document.getElementById('le-iframe').src = '';
     chargements = 0;
 
     document.getElementById('vue-confirmation').style.display = 'block';
+}
     
    // Détection de la soumission du formulaire Grist
 document.getElementById("le-iframe").addEventListener("load", function () {
     const url = this.src;
 
-    // Grist ajoute #submitted ou ?submitted après envoi
-    if (url.includes("submitted")) {
+    if (url.includes("submitted") || url.includes("envoye1")) {
         afficherConfirmation();
     }
 });
-  }
 
   function revenirAccueil() {
     document.getElementById('vue-confirmation').style.display = 'none';
