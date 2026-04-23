@@ -240,7 +240,6 @@ a {
 <script>
 
   var urlFormulaire = '';
-  var chargements = 0; // compte les fois où l'iframe se charge
 
   function ouvrirFormulaire(url, nom) {
     urlFormulaire = url;
@@ -278,13 +277,10 @@ function afficherConfirmation() {
     document.getElementById('vue-confirmation').style.display = 'block';
 }
     
-   // Détection de la soumission du formulaire Grist
-document.getElementById("le-iframe").addEventListener("load", function () {
-    const url = this.src;
-
-    if (url.includes("submitted") || url.includes("envoye1")) {
-        afficherConfirmation();
-    }
+  window.addEventListener("message", function(e) {
+  if (e.data === "grist-form-submitted") {
+    afficherConfirmation();
+  }
 });
 
   function revenirAccueil() {
