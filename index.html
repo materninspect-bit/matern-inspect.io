@@ -29,7 +29,7 @@ body {
 }
 
 h1 { color: red; font-size: 30px; }
-p  { color: yellow; font-size: 26px; }
+p  { color: green; font-size: 26px; }
 
 a {
   display: inline-block;
@@ -38,7 +38,7 @@ a {
   color: blue;
 }
 
-#vue-principale { display: block; }
+#vue-principale   { display: block; }
 #vue-confirmation { display: none; padding-top: 80px; }
 
 .bulle {
@@ -84,20 +84,8 @@ a {
   box-shadow: 0 4px 14px rgba(0,0,0,0.30);
   transition: background 0.2s, transform 0.15s;
 }
-
-.btn-retour:hover {
-  background: #b71c1c;
-  transform: translateY(-2px);
-}
-
-.btn-retour .fleche {
-  font-size: 22px;
-}
-
-#lien-indicateur {
-  display: none;
-  background: #1565c0;
-}
+.btn-retour:hover { background: #b71c1c; transform: translateY(-2px); }
+.btn-retour .fleche { font-size: 22px; }
 
 @keyframes apparition {
   from { opacity: 0; transform: translateY(20px) scale(0.95); }
@@ -112,118 +100,11 @@ a {
 
 </style>
 </head>
-
 <body>
 
 <img src="logo-materne.png" class="logo" alt="Logo Materne">
 
 <!-- VUE PRINCIPALE -->
-<div id="vue-principale">
-  <h1><br><br>Bonjour !</h1>
-  <p><strong>Prêt pour votre session d'inspection ?</strong></p>
-
-  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13">
-    Formulaire ligne de conditionnement
-  </a><br><br>
-
-  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13">
-    Formulaire zone de pasteurisation
-  </a><br><br>
-
-  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13">
-    Formulaire entrepôt logistique B
-  </a><br><br>
-
-  <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13">
-    Formulaire zone préparation
-  </a>
-</div>
-
-<!-- VUE CONFIRMATION -->
-<div id="vue-confirmation">
-  <div class="bulle">
-    <span class="icone">✅</span>
-    <p>Le formulaire d'inspection de la zone :</p>
-    <p class="nom-formulaire" id="nom-formulaire"></p>
-    <p>a bien été envoyé&nbsp;!</p>
-  </div>
-
-  <br>
-
-  <button class="btn-retour" onclick="revenirAccueil()">
-    <span class="fleche">←</span> Retour à l'accueil
-  </button>
-
-  <br>
-
-  <a id="lien-indicateur" class="btn-retour" target="_blank">
-    📄 Voir les indicateurs
-  </a>
-</div>
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  var nomsFormulaires = {
-    '1': 'Ligne de conditionnement',
-    '2': 'Zone de pasteurisation',
-    '3': 'Entrepôt logistique B',
-    '4': 'Zone préparation'
-  };
-
-  var liensComptesRendus = {
-    '1': 'https://www.750g.com/pilons-de-poulet-au-air-fryer-r209306.htm',
-    '2': 'indicateurs-pasteurisation.html',
-    '3': 'indicateurs-entrepot.html',
-    '4': 'indicateurs-preparation.html'
-  };
-
-  // 🔥 récupération URL ou mémoire
-  var params = new URLSearchParams(window.location.search);
-  var envoye = params.get('envoye');
-
-  if (envoye) {
-    sessionStorage.setItem('envoye', envoye);
-  } else {
-    envoye = sessionStorage.getItem('envoye');
-  }
-
-  if (envoye && nomsFormulaires[envoye]) {
-
-    document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
-
-    var lien = liensComptesRendus[envoye];
-    var bouton = document.getElementById('lien-indicateur');
-
-    if (lien && bouton) {
-      bouton.href = lien;
-      bouton.style.display = 'inline-flex';
-    }
-
-    afficherConfirmation();
-  }
-
-});
-
-function afficherConfirmation() {
-  document.getElementById('vue-principale').style.display = 'none';
-  document.getElementById('vue-confirmation').style.display = 'block';
-}
-
-function revenirAccueil() {
-  sessionStorage.removeItem('envoye');
-
-  history.replaceState({}, '', window.location.pathname);
-
-  document.getElementById('vue-confirmation').style.display = 'none';
-  document.getElementById('vue-principale').style.display = 'block';
-}
-
-</script>
-
-</body>
-</html><!-- VUE PRINCIPALE -->
 <div id="vue-principale">
   <h1><br><br>Bonjour !</h1>
   <p><strong>Prêt pour votre session d'inspection ?</strong></p>
@@ -265,49 +146,39 @@ function revenirAccueil() {
 
 <script>
 
- document.addEventListener("DOMContentLoaded", function() {
-
   var nomsFormulaires = {
-    '1': 'Ligne de conditionnement',
+    '1': 'Ligne de conditonnement',
     '2': 'Zone de pasteurisation',
     '3': 'Entrepôt logistique B',
     '4': 'Zone préparation'
   };
-
-  var liensComptesRendus = {
-    '1': 'https://www.750g.com/pilons-de-poulet-au-air-fryer-r209306.htm',
-    '2': 'indicateurs-pasteurisation.html',
-    '3': 'indicateurs-entrepot.html',
-    '4': 'indicateurs-preparation.html'
-  };
-
+var liensComptesRendus = {
+  '1': 'https://www.750g.com/pilons-de-poulet-au-air-fryer-r209306.htm',
+  '2': 'indicateurs-pasteurisation.html',
+  '3': 'indicateurs-entrepot.html',
+  '4': 'indicateurs-preparation.html'
+};
   var params = new URLSearchParams(window.location.search);
-var envoye = params.get('envoye');
+  var envoye = params.get('envoye');
 
-// 🔥 on sauvegarde immédiatement si présent
-if (envoye) {
-  sessionStorage.setItem('envoye', envoye);
-}
+if (envoye && nomsFormulaires[envoye]) {
 
-// 🔥 sinon on récupère la dernière valeur connue
-envoye = envoye || sessionStorage.getItem('envoye');
 
-  if (envoye && nomsFormulaires[envoye]) {
+  document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
 
-    document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
+  // 🔗 Ajouter le bon lien de compte rendu
+  var lien = liensComptesRendus[envoye];
+  var boutonCR = document.getElementById('lien-indicateur');
 
-    var lien = liensComptesRendus[envoye];
-    var boutonCR = document.getElementById('lien-indicateur');
-
-    if (boutonCR && lien) {
-      boutonCR.href = lien;
-      boutonCR.style.display = 'inline-flex';
-    }
-
-    afficherConfirmation();
+  if (lien) {
+    boutonCR.href = lien;
+    boutonCR.style.display = 'inline-flex';
+  } else {
+    boutonCR.style.display = 'none';
   }
 
-});
+  afficherConfirmation();
+}
 
   function afficherConfirmation() {
     document.getElementById('vue-principale').style.display = 'none';
@@ -315,13 +186,10 @@ envoye = envoye || sessionStorage.getItem('envoye');
   }
 
   function revenirAccueil() {
-  sessionStorage.removeItem('envoye'); // 👈 important
-
-  history.replaceState({}, '', window.location.pathname);
-
-  document.getElementById('vue-confirmation').style.display = 'none';
-  document.getElementById('vue-principale').style.display = 'block';
-}
+      history.replaceState({}, '', window.location.pathname);
+    document.getElementById('vue-confirmation').style.display = 'none';
+    document.getElementById('vue-principale').style.display = 'block';
+  }
 
 </script>
 
