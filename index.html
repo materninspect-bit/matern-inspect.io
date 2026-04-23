@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -44,12 +44,14 @@
     }
 
     /* Vues */
-    #vue-principale,
+    #vue-principale {
+      display: block;
+    }
+
     #vue-iframe,
     #vue-confirmation {
       display: none;
     }
-    #vue-principale { display: block; }
 
     /* Vue iframe */
     #vue-iframe {
@@ -60,7 +62,10 @@
       flex-direction: column;
       display: none;
     }
-    #vue-iframe.actif { display: flex; }
+
+    #vue-iframe.actif {
+      display: flex;
+    }
 
     #barre-iframe {
       display: flex;
@@ -112,7 +117,10 @@
     }
 
     /* Vue confirmation */
-    #vue-confirmation { padding-top: 80px; }
+    #vue-confirmation {
+      padding-top: 80px;
+      display: none;
+    }
 
     .bulle {
       display: inline-block;
@@ -221,15 +229,12 @@
 
   <!-- Script -->
   <script>
-    var urlFormulaire = '';
-
     function ouvrirFormulaire(url, nom) {
-      urlFormulaire = url;
       document.getElementById('titre-iframe').textContent = nom;
       document.getElementById('spinner').style.display = 'block';
       document.getElementById('le-iframe').src = url;
       document.getElementById('vue-principale').style.display = 'none';
-      document.getElementById('vue-iframe').classList.add('actif');
+      document.getElementById('vue-iframe').style.display = 'flex';
     }
 
     function iframeChargee() {
@@ -237,13 +242,13 @@
     }
 
     function fermerIframe() {
-      document.getElementById('vue-iframe').classList.remove('actif');
+      document.getElementById('vue-iframe').style.display = 'none';
       document.getElementById('le-iframe').src = '';
       document.getElementById('vue-principale').style.display = 'block';
     }
 
     function afficherConfirmation() {
-      document.getElementById('vue-iframe').classList.remove('actif');
+      document.getElementById('vue-iframe').style.display = 'none';
       document.getElementById('le-iframe').src = '';
       document.getElementById('vue-confirmation').style.display = 'block';
     }
@@ -261,7 +266,7 @@
       }
     });
 
-    // Vérification périodique du contenu de l'iframe (si CORS bloque l'URL)
+    // Vérification périodique du contenu de l'iframe
     function vérifierContenuIframe() {
       try {
         var iframe = document.getElementById('le-iframe');
