@@ -283,17 +283,12 @@ a {
 
     document.getElementById('vue-confirmation').style.display = 'block';
     
-    // Détection de la soumission du formulaire dans l'iframe
+   // Détection de la soumission du formulaire Grist
 document.getElementById("le-iframe").addEventListener("load", function () {
-    let url;
+    const url = this.src;
 
-    try {
-        url = this.contentWindow.location.href;
-    } catch (e) {
-        return; // sécurité si l'iframe est externe
-    }
-
-    if (url.includes("envoye1")) {
+    // Grist ajoute #submitted ou ?submitted après envoi
+    if (url.includes("submitted")) {
         afficherConfirmation();
     }
 });
