@@ -258,6 +258,7 @@ a {
   }
 
   function iframeChargee() {
+    if (!formulaireActif) return ;
     chargements++;
     document.getElementById('spinner').style.display = 'none';
 
