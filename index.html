@@ -165,12 +165,13 @@ a {
   var params = new URLSearchParams(window.location.search);
 var envoye = params.get('envoye');
 
-// 🔥 sauvegarde pour éviter perte si URL disparaît
+// 🔥 on sauvegarde immédiatement si présent
 if (envoye) {
   sessionStorage.setItem('envoye', envoye);
-} else {
-  envoye = sessionStorage.getItem('envoye');
 }
+
+// 🔥 sinon on récupère la dernière valeur connue
+envoye = envoye || sessionStorage.getItem('envoye');
 
   if (envoye && nomsFormulaires[envoye]) {
 
@@ -195,10 +196,13 @@ if (envoye) {
   }
 
   function revenirAccueil() {
-      history.replaceState({}, '', window.location.pathname);
-    document.getElementById('vue-confirmation').style.display = 'none';
-    document.getElementById('vue-principale').style.display = 'block';
-  }
+  sessionStorage.removeItem('envoye'); // 👈 important
+
+  history.replaceState({}, '', window.location.pathname);
+
+  document.getElementById('vue-confirmation').style.display = 'none';
+  document.getElementById('vue-principale').style.display = 'block';
+}
 
 </script>
 
