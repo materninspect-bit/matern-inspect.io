@@ -282,6 +282,21 @@ a {
     chargements = 0;
 
     document.getElementById('vue-confirmation').style.display = 'block';
+    
+    // Détection de la soumission du formulaire dans l'iframe
+document.getElementById("le-iframe").addEventListener("load", function () {
+    let url;
+
+    try {
+        url = this.contentWindow.location.href;
+    } catch (e) {
+        return; // sécurité si l'iframe est externe
+    }
+
+    if (url.includes("envoye1")) {
+        afficherConfirmation();
+    }
+});
   }
 
   function revenirAccueil() {
