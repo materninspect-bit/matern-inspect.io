@@ -29,12 +29,6 @@ body {
 }
 
 
-  .accueil-hero {
-  padding: 40px 20px;
-  margin: 30px auto 10px;
-  max-width: 500px;
-  
-}
 
 .emoji-accueil {
   font-size: 56px;
@@ -82,7 +76,30 @@ a button:hover {
   background-color: #1976D2;
 }
 
-#vue-principale   { display: block; }
+  #vue-principale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.accueil-hero {
+  padding: 10px 20px;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+#vue-principale a {
+  width: 85%;
+  margin: 0;
+}
+
+#vue-principale a button {
+  width: 100%;
+}
 #vue-confirmation { display: none; padding-top: 80px; }
 
 .bulle {
