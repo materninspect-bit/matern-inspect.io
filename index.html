@@ -28,8 +28,38 @@ body {
   top: 10px;
 }
 
-h1 { color: red; font-size: 30px; }
-p  { color: yellow ; font-size: 26px; }
+
+  .accueil-hero {
+  padding: 40px 20px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  margin: 30px auto 10px;
+  max-width: 500px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.emoji-accueil {
+  font-size: 56px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+h1 {
+  background: linear-gradient(135deg, #ffffff, #90caf9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.8em;
+  margin: 0 0 8px;
+}
+
+.sous-titre {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  margin-top: 4px;
+}
 
 a {
   display: inline-block;
@@ -105,6 +135,7 @@ a button:hover {
 .btn-retour:hover { background: #b71c1c; transform: translateY(-2px); }
 .btn-retour .fleche { font-size: 22px; }
 
+
 @keyframes apparition {
   from { opacity: 0; transform: translateY(20px) scale(0.95); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -124,8 +155,12 @@ a button:hover {
 
 <!-- VUE PRINCIPALE -->
 <div id="vue-principale">
-  <h1><br><br>Bonjour !</h1>
-  <p><strong>Prêt pour votre session d'inspection ?</strong></p>
+  <div class="accueil-hero">
+    <div class="emoji-accueil">🏭</div>
+    <h1>Bonjour !</h1>
+    <p><strong>Prêt pour votre session d'inspection ?</strong></p>
+    <p class="sous-titre">Sélectionnez votre zone ci-dessous</p>
+  </div>
 
   <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13">
    <button> Formulaire ligne de conditionnement </button> 
