@@ -241,6 +241,28 @@ a button:hover {
   font-weight: bold;
 }
 
+.conteneur-mdp {
+  position: relative;
+  width: 100%;
+}
+
+.conteneur-mdp .champ-mdp {
+  padding-right: 48px;
+}
+
+.btn-oeil {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  line-height: 1;
+}
+  
 </style>
 </head>
 <body>
@@ -252,14 +274,17 @@ a button:hover {
   <div class="carte-connexion">
     <span class="emoji-connexion">🔒</span>
     <h2>Accès sécurisé</h2>
-    <p class="sous-titre-connexion">Entrez votre mot de passe pour accéder à Matern'inspect</p>
-    <input
-      type="password"
-      id="champ-mot-de-passe"
-      class="champ-mdp"
-      placeholder="Mot de passe"
-      onkeydown="if(event.key==='Enter') verifierMotDePasse()"
-    >
+    <p class="sous-titre-connexion">Entrez votre mot de passe pour accéder à votre espace inspection</p>
+    div class="conteneur-mdp">
+      <input
+        type="password"
+        id="champ-mot-de-passe"
+        class="champ-mdp"
+        placeholder="Mot de passe"
+        onkeydown="if(event.key==='Enter') verifierMotDePasse()"
+      >
+      <button class="btn-oeil" onclick="toggleMdp()" type="button" title="Afficher / masquer">👁️</button>
+    </div>
     <button class="btn-connexion" onclick="verifierMotDePasse()">Se connecter</button>
     <p class="msg-erreur" id="msg-erreur">❌ Mot de passe incorrect.</p>
   </div>
@@ -338,7 +363,11 @@ a button:hover {
       document.getElementById('champ-mot-de-passe').value = '';
     }
   }
-
+  
+ function toggleMdp() {
+    const champ = document.getElementById('champ-mot-de-passe');
+    champ.type = champ.type === 'password' ? 'text' : 'password';
+  }
 
 
   /* ── Logique de confirmation existante ── */
