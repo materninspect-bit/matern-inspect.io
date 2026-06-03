@@ -316,9 +316,16 @@ a button:hover {
     "700fba65fe1f4ec5f7f793844515b731859eb7c5284b7d9d27f945aecf97383d",
     "d1dcc4d7c6935f51bd9df9d3c5605fff8f55d6b570fe03da9d080ceee7aa22bf",
     "3a91602a475839c91f1f702f12e0cd1ab2d5bed3c39a509794a624871198b7fc",
-    "6cc058c5cd9578c5611b0fd9532317bdc45d1a8309945ef4d1c5d2e3a2268152"
+    "6cc058c5cd9578c5611b0fd9532317bdc45d1a8309945ef4d1c5d2e3a2268152",
+    "f3cf4d3e8595291a80642f50c7da392a4bcd60536aa300e5a045b01d3370e3d9"
   ];
-
+/* Créer un nouveau mot de passage : Dans la console : 
+async function hash(pwd) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pwd));
+  const result = [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2,"0")).join("");
+  console.log(result);
+}
+hash("motdepassequonveut puis copier coller")
   /* ── Vérification du mot de passe ── */
   async function verifierMotDePasse() {
     const motDePasse = document.getElementById('champ-mot-de-passe').value;
