@@ -93,9 +93,11 @@ a button {
   cursor: pointer;
   font-weight: bold;
 }
-
+a button:hover {
+  background-color: #1976D2;
+}
 #vue-principale {
-  display: none; /* IMPORTANT */
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -103,6 +105,85 @@ a button {
   padding: 10px;
   box-sizing: border-box;
 }
+.accueil-hero {
+  padding: 10px 20px;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+#vue-principale a {
+  width: 85%;
+  margin: 0;
+}
+
+#vue-principale a button {
+  width: 100%;
+}
+#vue-confirmation { display: none; padding-top: 80px; }
+
+.bulle {
+  display: inline-block;
+  background: #ffffff;
+  border: 3px solid #4caf50;
+  border-radius: 20px;
+  padding: 24px 36px;
+  margin-top: 40px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.30);
+  animation: apparition 0.4s ease;
+}
+
+.bulle .icone { font-size: 48px; display: block; margin-bottom: 10px; }
+
+.bulle .nom-formulaire {
+  color: #1565c0;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.bulle p {
+  color: #2e7d32;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  background: #d32f2f;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.30);
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-retour:hover { background: #b71c1c; transform: translateY(-2px); }
+.btn-retour .fleche { font-size: 22px; }
+
+
+@keyframes apparition {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  p  { font-size: 22px; }
+  .logo { width: 100px; }
+}
+
+</style>
+</head>
+<body>
+
+<img src="logo-materne.png" class="logo" alt="Logo Materne">
 
 </style>
 </head>
@@ -157,6 +238,70 @@ a button {
 
 </div>
 
+<!-- VUE CONFIRMATION -->
+<div id="vue-confirmation">
+  <div class="bulle">
+    <span class="icone">✅</span>
+    <p>Le formulaire d'inspection de la zone :</p>
+     <p class="nom-formulaire" id="nom-formulaire"></p>
+    <p>a bien été envoyé&nbsp;!</p>                                
+  </div>
+  <br>
+  <button class="btn-retour" onclick="revenirAccueil()">
+    <span class="fleche">←</span> Retour à l'accueil
+  </button>
+  <br>
+<a id="lien-indicateur" href="#" class="btn-retour" style="background:#1565c0;">
+  📄 Voir les indicateurs
+</a>
+</div>
+
+<script>
+
+  var nomsFormulaires = {
+    '1': 'Ligne de conditionnement',
+    '2': 'Zone de pasteurisation',
+    '3': 'Entrepôt logistique B',
+    '4': 'Zone de préparation'
+  };
+var liensComptesRendus = {
+  '1': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/11',
+  '2': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/10',
+  '3': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/12',
+  '4': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/13'
+};
+  var params = new URLSearchParams(window.location.search);
+  var envoye = params.get('envoye');
+
+if (envoye && nomsFormulaires[envoye]) {
+
+
+  document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
+
+  // 🔗 Ajouter le bon lien de compte rendu
+  var lien = liensComptesRendus[envoye];
+  var boutonCR = document.getElementById('lien-indicateur');
+
+  if (lien) {
+    boutonCR.href = lien;
+    boutonCR.style.display = 'inline-flex';
+  } else {
+    boutonCR.style.display = 'none';
+  }
+
+  afficherConfirmation();
+}
+
+  function afficherConfirmation() {
+    document.getElementById('vue-principale').style.display = 'none';
+    document.getElementById('vue-confirmation').style.display = 'block';
+  }
+
+  function revenirAccueil() {
+      history.replaceState({}, '', window.location.pathname);
+    document.getElementById('vue-confirmation').style.display = 'none';
+    document.getElementById('vue-principale').style.display = 'block';
+  }
 <script>
 
 async function sha256(text) {
