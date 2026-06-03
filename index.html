@@ -28,8 +28,6 @@ body {
   top: 10px;
 }
 
-
-
 .emoji-accueil {
   font-size: 56px;
   margin-bottom: 8px;
@@ -241,6 +239,7 @@ a button:hover {
   font-weight: bold;
 }
 
+
 .conteneur-mdp {
   position: relative;
   width: 100%;
@@ -262,7 +261,7 @@ a button:hover {
   padding: 0;
   line-height: 1;
 }
-  
+
 </style>
 </head>
 <body>
@@ -274,8 +273,10 @@ a button:hover {
   <div class="carte-connexion">
     <span class="emoji-connexion">🔒</span>
     <h2>Accès sécurisé</h2>
-    <p class="sous-titre-connexion">Entrez votre mot de passe pour accéder à votre espace inspection</p>
-    div class="conteneur-mdp">
+    <p class="sous-titre-connexion">Entrez votre mot de passe pour accéder à Matern'inspect</p>
+
+   
+    <div class="conteneur-mdp">
       <input
         type="password"
         id="champ-mot-de-passe"
@@ -285,6 +286,8 @@ a button:hover {
       >
       <button class="btn-oeil" onclick="toggleMdp()" type="button" title="Afficher / masquer">👁️</button>
     </div>
+    
+
     <button class="btn-connexion" onclick="verifierMotDePasse()">Se connecter</button>
     <p class="msg-erreur" id="msg-erreur">❌ Mot de passe incorrect.</p>
   </div>
@@ -363,12 +366,11 @@ a button:hover {
       document.getElementById('champ-mot-de-passe').value = '';
     }
   }
-  
- function toggleMdp() {
+
+  function toggleMdp() {
     const champ = document.getElementById('champ-mot-de-passe');
     champ.type = champ.type === 'password' ? 'text' : 'password';
   }
-
 
   /* ── Logique de confirmation existante ── */
   var nomsFormulaires = {
