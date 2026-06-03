@@ -340,11 +340,7 @@ a button:hover {
     }
   }
 
-  /* ── Restauration de session (rechargement de page) ── */
-  if (sessionStorage.getItem('authentifie') === '1') {
-    document.getElementById('vue-connexion').style.display = 'none';
-    document.getElementById('vue-principale').style.display = 'flex';
-  }
+
 
   /* ── Logique de confirmation existante ── */
   var nomsFormulaires = {
