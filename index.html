@@ -1,19 +1,10 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matern'inspect</title>
 <link rel="icon" type="image/png" href="logo-materne.png">
-
-<script>
-window.authorizedHashes = [
-  "7ad8b572cdb7c305093c98514fa241013459ca0524471ebb0959af5f8d1f1b79",
-  "700fba65fe1f4ec5f7f793844515b731859eb7c5284b7d9d27f945aecf97383d",
-  "d1dcc4d7c6935f51bd9df9d3c5605fff8f55d6b570fe03da9d080ceee7aa22bf",
-  "3a91602a475839c91f1f702f12e0cd1ab2d5bed3c39a509794a624871198b7fc"
-];
-</script>
 
 <style>
 
@@ -28,31 +19,6 @@ body {
   min-height: 100vh;
 }
 
-/* LOGIN OVERLAY */
-#login-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(245,245,245,0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#login-box {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  width: 90%;
-  max-width: 350px;
-  text-align: center;
-}
-
-
 .logo {
   width: 150px;
   max-width: 40%;
@@ -62,41 +28,55 @@ body {
   top: 10px;
 }
 
-.emoji-accueil { font-size: 56px; margin-bottom: 8px; display: block; }
+
+
+.emoji-accueil {
+  font-size: 56px;
+  margin-bottom: 8px;
+  display: block;
+}
 
 h1 {
   background: linear-gradient(135deg, #ffffff, #90caf9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 2.8em;
   margin: 0 0 8px;
 }
 
-.sous-titre { color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 4px; }
+.sous-titre {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  margin-top: 4px;
+}
 
 a {
   display: inline-block;
   margin-top: 20px;
   font-size: 18px;
   color: blue;
-  text-decoration: none;
+  text-decoration: none
 }
 
-a button {
+  a button {
   display: block;
   width: 100%;
-  padding: 12px 20px;background-color: #edf5f3;
+  padding: 12px 20px;
+  background-color: #edf5f3;
   color: black;
   border: none;
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: bold
 }
+
 a button:hover {
   background-color: #1976D2;
 }
-#vue-principale {
+
+  #vue-principale {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,6 +85,7 @@ a button:hover {
   padding: 10px;
   box-sizing: border-box;
 }
+
 .accueil-hero {
   padding: 10px 20px;
   margin: 0 auto;
@@ -170,13 +151,94 @@ a button:hover {
 
 @keyframes apparition {
   from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (max-width: 600px) {
   h1 { font-size: 24px; }
-  p  { font-size: 22px; }
+  p { font-size: 22px; }
   .logo { width: 100px; }
+}
+
+/* ── Écran de connexion ── */
+#vue-connexion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.carte-connexion {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 36px 32px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  animation: apparition 0.4s ease;
+}
+
+.carte-connexion .emoji-connexion {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.carte-connexion h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  color: #1a1a1a;
+}
+
+.carte-connexion .sous-titre-connexion {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+
+.champ-mdp {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.champ-mdp:focus {
+  border-color: #1976D2;
+}
+
+.btn-connexion {
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px;
+  background: #1976D2;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-connexion:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+}
+
+.msg-erreur {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 12px;
+  display: none;
+  font-weight: bold;
 }
 
 </style>
@@ -185,35 +247,26 @@ a button:hover {
 
 <img src="logo-materne.png" class="logo" alt="Logo Materne">
 
-</style>
-</head>
-
-<body>
-
-
-<div id="login-screen">
-  <div id="login-box">
-    <h2>🔒 Accès sécurisé</h2>
-
-    <input id="password" type="password" placeholder="Mot de passe"
-    style="width:90%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid #ccc;">
-
-    <br>
-
-    <button onclick="login()"
-    style="padding:12px 20px;border:none;border-radius:20px;background:#1565c0;color:white;font-weight:bold;cursor:pointer;">
-      Connexion
-    </button>
-
-    <p id="error" style="color:red;"></p>
+<!-- VUE CONNEXION -->
+<div id="vue-connexion">
+  <div class="carte-connexion">
+    <span class="emoji-connexion">🔒</span>
+    <h2>Accès sécurisé</h2>
+    <p class="sous-titre-connexion">Entrez votre mot de passe pour accéder à Matern'inspect</p>
+    <input
+      type="password"
+      id="champ-mot-de-passe"
+      class="champ-mdp"
+      placeholder="Mot de passe"
+      onkeydown="if(event.key==='Enter') verifierMotDePasse()"
+    >
+    <button class="btn-connexion" onclick="verifierMotDePasse()">Se connecter</button>
+    <p class="msg-erreur" id="msg-erreur">❌ Mot de passe incorrect.</p>
   </div>
 </div>
 
-<img src="logo-materne.png" class="logo" alt="Logo Materne">
-
 <!-- VUE PRINCIPALE -->
-<div id="vue-principale">
-
+<div id="vue-principale" style="display:none;">
   <div class="accueil-hero">
     <div class="emoji-accueil">🏭</div>
     <h1>Bonjour !</h1>
@@ -224,6 +277,7 @@ a button:hover {
   <a href="https://matinspect.getgrist.com/forms/kRTtNJLsvsfrzNfxJUW9Ko/13">
    <button> Formulaire ligne de conditionnement </button>
   </a><br><br>
+
   <a href="https://matinspect.getgrist.com/forms/ix3G3yUCtVjxVEwuX3sjDe/24">
    <button> Formulaire zone de pasteurisation </button>
   </a><br><br>
@@ -235,7 +289,6 @@ a button:hover {
   <a href="https://matinspect.getgrist.com/forms/8dUdaVHWXXkJBeMT7wqG1P/26">
     <button> Formulaire zone de préparation </button>
   </a>
-
 </div>
 
 <!-- VUE CONFIRMATION -->
@@ -258,86 +311,85 @@ a button:hover {
 
 <script>
 
+  const authorizedHashes = [
+    "7ad8b572cdb7c305093c98514fa241013459ca0524471ebb0959af5f8d1f1b79",
+    "700fba65fe1f4ec5f7f793844515b731859eb7c5284b7d9d27f945aecf97383d",
+    "d1dcc4d7c6935f51bd9df9d3c5605fff8f55d6b570fe03da9d080ceee7aa22bf",
+    "3a91602a475839c91f1f702f12e0cd1ab2d5bed3c39a509794a624871198b7fc"
+  ];
+
+  /* ── Vérification du mot de passe ── */
+  async function verifierMotDePasse() {
+    const motDePasse = document.getElementById('champ-mot-de-passe').value;
+    const msgErreur = document.getElementById('msg-erreur');
+
+    const encoder = new TextEncoder();
+    const data = encoder.encode(motDePasse);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    if (authorizedHashes.includes(hashHex)) {
+      sessionStorage.setItem('authentifie', '1');
+      msgErreur.style.display = 'none';
+      document.getElementById('vue-connexion').style.display = 'none';
+      document.getElementById('vue-principale').style.display = 'flex';
+    } else {
+      msgErreur.style.display = 'block';
+      document.getElementById('champ-mot-de-passe').value = '';
+    }
+  }
+
+  /* ── Restauration de session (rechargement de page) ── */
+  if (sessionStorage.getItem('authentifie') === '1') {
+    document.getElementById('vue-connexion').style.display = 'none';
+    document.getElementById('vue-principale').style.display = 'flex';
+  }
+
+  /* ── Logique de confirmation existante ── */
   var nomsFormulaires = {
     '1': 'Ligne de conditionnement',
     '2': 'Zone de pasteurisation',
     '3': 'Entrepôt logistique B',
     '4': 'Zone de préparation'
   };
-var liensComptesRendus = {
-  '1': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/11',
-  '2': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/10',
-  '3': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/12',
-  '4': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/13'
-};
+  var liensComptesRendus = {
+    '1': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/11',
+    '2': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/10',
+    '3': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/12',
+    '4': 'https://matinspect.getgrist.com/vWPkts7sSpgf/Document-sans-titre/p/13'
+  };
+
   var params = new URLSearchParams(window.location.search);
   var envoye = params.get('envoye');
 
-if (envoye && nomsFormulaires[envoye]) {
+  if (envoye && nomsFormulaires[envoye]) {
+    document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
 
+    var lien = liensComptesRendus[envoye];
+    var boutonCR = document.getElementById('lien-indicateur');
 
-  document.getElementById('nom-formulaire').textContent = nomsFormulaires[envoye];
+    if (lien) {
+      boutonCR.href = lien;
+      boutonCR.style.display = 'inline-flex';
+    } else {
+      boutonCR.style.display = 'none';
+    }
 
-  // 🔗 Ajouter le bon lien de compte rendu
-  var lien = liensComptesRendus[envoye];
-  var boutonCR = document.getElementById('lien-indicateur');
-
-  if (lien) {
-    boutonCR.href = lien;
-    boutonCR.style.display = 'inline-flex';
-  } else {
-    boutonCR.style.display = 'none';
+    afficherConfirmation();
   }
 
-  afficherConfirmation();
-}
-
   function afficherConfirmation() {
+    document.getElementById('vue-connexion').style.display = 'none';
     document.getElementById('vue-principale').style.display = 'none';
     document.getElementById('vue-confirmation').style.display = 'block';
   }
 
   function revenirAccueil() {
-      history.replaceState({}, '', window.location.pathname);
+    history.replaceState({}, '', window.location.pathname);
     document.getElementById('vue-confirmation').style.display = 'none';
-    document.getElementById('vue-principale').style.display = 'block';
+    document.getElementById('vue-principale').style.display = 'flex';
   }
-<script>
-
-async function sha256(text) {
-  const data = new TextEncoder().encode(text);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-
-  return [...new Uint8Array(hashBuffer)]
-    .map(b => b.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-async function login() {
-
-  const password = document.getElementById("password").value;
-  const hash = await sha256(password);
-
-  if (window.authorizedHashes.includes(hash)) {
-
-    sessionStorage.setItem("connecte", "oui");
-
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("vue-principale").style.display = "flex";
-
-  } else {
-    document.getElementById("error").textContent = "Mot de passe incorrect";
-  }
-}
-
-window.addEventListener("load", () => {
-
-  if (sessionStorage.getItem("connecte") === "oui") {
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("vue-principale").style.display = "flex";
-  }
-
-});
 
 </script>
 
