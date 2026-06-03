@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script src="users.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matern'inspect</title>
@@ -9,6 +10,61 @@
 <style>
 
 body {
+  <div id="login-screen" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#f5f5f5;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+<div style="
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+width:90%;
+max-width:350px;
+text-align:center;
+">
+
+<h2>🔒 Accès sécurisé</h2>
+
+<input
+id="password"
+type="password"
+placeholder="Mot de passe"
+style="
+width:90%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ccc;
+">
+
+<br>
+
+<button onclick="login()" style="
+padding:12px 20px;
+border:none;
+border-radius:20px;
+background:#1565c0;
+color:white;
+font-weight:bold;
+cursor:pointer;
+">
+Connexion
+</button>
+
+<p id="error" style="color:red;"></p>
+
+</div>
+</div>
   margin: 0;
   font-family: Arial, sans-serif;
   text-align: center;
